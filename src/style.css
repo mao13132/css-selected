@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap');
+@import url('./icons/style.css');   /*Ипорт для шрифтов*/
+
+:root {
+    --accent: #f52a2b;
+    --grey_dark: #7c8080;
+    ---grey_light: #bcbcbc;
+    --dark: #1a1a33;
+    --bg: #e5e5e7;
+    --gradient-primary: linear-gradient(to right, #fea13e, var(--accent));
+    --gradient-secondary: liner-gradient(to right, var(---grey_light), var(--grey_dark));
+
+    --transition: all 0.5s ease-in-out; /*Стиль анимации*/
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+    background-color: var(--bg);
+}
+
+.wrapper {
+    display: grid;      /*Режим голонок*/
+    grid-template-columns: 1fr 2fr 1fr;     /*Кол-во и размер колонок*/
+    /* border: 5px solid red; */
+    min-height: 100vh;
+}
+.wrapper > div {        /*Правило только для первого уровня вложенности*/
+    /* border: 5px solid green; */
+    padding: 32px;
+}
+.wrapper > div > *:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.input {
+    width: 100%;
+    background-color: var(--bg);
+    transition: var(--transition);
+    border: 3px solid var(---grey_light);
+    border-radius: 8px; /*размер Обводки*/
+    padding-left: 12px;
+    display: flex;          /*Включаем флекс для выравнивания по вертикали*/
+    align-items: center;        /*Вертикальное выравнивание по центру*/
+    gap: 4px;
+    font-weight: 300;
+    color: var(--grey_dark);
+    overflow: hidden;           /*Убирает наезды*/
+    
+    
+}
+.input:focus-within {
+    border-radius: 16px;
+    border-color: white;
+    background-color: white;
+}
+.input input {
+    outline: none;  /*Убрать стандартную обводку*/
+    background-color: var(--bg);
+    border: none;
+    padding: 12px;
+    padding-left: 0;
+    flex-grow: 1;               /*Занимать всё пространство по горизонту*/
+    font-size: 1em;     /*Размер равен родительскому размеру*/
+    transition: var(--transition);
+}
+.input:focus-within input {
+    background-color: white;
+}
+
+.button,
+.selectbox__selected {
+    padding: 14px 24px;
+    text-align: center;
+    border-radius: 16px;
+    background: var(--gradient-primary);    /*Градиент задаёться здесь*/
+    color: white;
+    font-weight: 300;
+}
+
+/*Selectbox*/
+
+.selectbox {
+    cursor: pointer;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: var(--transition);
+    color: white;
+    font-weight: 300;
+}
+.selectbox__selected {
+    position: relative;  /*Что бы можноо было позиционировать стрелку*/
+    padding: 22px 48px;
+    min-width: max-content;
+    text-align: left;
+}
+.selectbox__selected > span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);        /*Что бы встал по центру надпись*/
+    margin-top: -9px;
+    transition: var(--transition);
+}
+.ic_arrow_down {
+    font-size: 0.8em;
+    position: absolute;
+    right: 24px;        /*Переносил иконку в право*/
+    top: 50%;
+    margin-top: -0.4em;
+}
+.selectbox__list {
+    max-height: 0;      /*Убираем строчки когда не опен*/
+    transition: var(--transition);  /*Анимация при переключение строчек*/
+}
+.selectbox_item {
+    padding: 10px 24px;
+    transition: var(--transition);  /*Анимация при переключение строчек*/
+    font-size: 14px;
+}
+.selectbox_item:hover,
+.selectbox_item.active {
+    background-color: var(--accent);
+    border-radius: 100px;
+}
+.selectbox_item:not(:last-child) {      /*Расстояние между строчками что бы не сливалось. Правило кроме последней строчки*/
+    margin-bottom: 4px;
+}
+.selectbox.open {
+    border-radius: 24px;
+    background: var(--dark);
+    font-size: 14px;
+}
+.selectbox.open .selectbox__selected {
+    background: var(--dark);
+    text-align: left;
+    padding-left: 36px;
+}
+.selectbox.selectbox.open .selectbox__selected > span {
+    left: 36px;
+    transform: translateX(0);
+}
+.selectbox.open .selectbox__list {
+    padding: 0 12px 24px;   /*Выравнивание строчек в нутри*/
+    max-height: max-content;            /*отображаем строчки*/
+}
