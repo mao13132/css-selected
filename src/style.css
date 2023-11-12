@@ -11,11 +11,12 @@
     --dark: #1a1a33;
     --bg: #e5e5e7;
     --gradient-primary: linear-gradient(to right, #fea13e, var(--accent));
-    --gradient-secondary: liner-gradient(to right, var(---grey_light), var(--grey_dark));
+    --gradient-secondary: linear-gradient(to right, var(---grey_light), var(--grey_dark));
+    --gradient_red: linear-gradient(to right, #f4535b, #fb7478);
     
     /*Shadows*/
-    --outer_light: -10px -10px 20px white;
-    --outer_dark: 10px 10px 20px rgba(0,0,0,0.3);
+    /* --outer_light: -10px -10px 20px white;
+    --outer_dark: 10px 10px 20px rgba(0,0,0,0.3); */
 
 
 
@@ -37,9 +38,13 @@ body {
 .outer-shadow {
     
     border-left: 1px solid white;       /*Только левый край обведен*/
-    box-shadow: var(--outer_light), var(--outer_dark);
+    box-shadow: -10px -10px 20px white, 10px 10px 20px rgba(0,0,0,0.3);
 }
-
+.inner-shadow {
+    
+    border-left: 1px solid white;       /*Только левый край обведен*/
+    box-shadow: inset 10px 10px 20px rgba(0,0,0,0.3), -10px -10px 20px white;
+}
 .wrapper {
     display: grid;      /*Режим голонок*/
     grid-template-columns: 1fr 2fr 1fr;     /*Кол-во и размер колонок*/
@@ -58,7 +63,13 @@ body {
 .wrapper > div:nth-child(2) > *:first-child {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 16px;
+    grid-gap: 60px;
+}
+.target {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 60px;
+    align-content: center;
 }
 
 .input {
@@ -98,6 +109,7 @@ body {
 
 .button,
 .selectbox__selected {
+    cursor: pointer;
     padding: 14px 24px;
     text-align: center;
     border-radius: 16px;
@@ -425,3 +437,192 @@ svg.circle-slider__circle_3,
     bottom: 50%;
     transform: rotate(90deg);      /*Разворот на 180%*/
 }
+/*квандратные кнопки button squre*/
+.buttons-square {
+    cursor: pointer;
+    margin-top: 30px;
+    display: flex;
+    gap: 16px;
+}
+.button-square {
+    --size: 70px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: calc(var(--size) / 4);
+    display: grid;
+    grid-auto-flow: column;     /*Сетка начнёт не горизонтально выстраиваться а вертикально*/
+    align-items: center;
+    justify-content: center;      /*Вертикаль по центру*/
+   /*  align-content: center;  */     /*Вертикаль по центру*/
+    justify-items: center;      /*Горизонталь по центру*/
+    position: relative;
+}
+.button-square::before {
+    z-index: -1;
+    --offset: 10%;
+    content: '';
+    display: block;
+    position: absolute;
+    top: var(--offset);
+    right: var(--offset);
+    bottom: var(--offset);
+    left: var(--offset);
+    border-radius: calc(var(--offset) * 2);
+    border: 2px solid var(--accent);
+}
+.button-square.active {
+    color: white;
+
+}
+.button-square:not(.active) span {      /*Всем эллементам которые не имеют класс active*/
+    /*Так делается шрифт градиент*/
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.button-square.active::before {
+    
+    background: var(--gradient_red);
+    color: white;
+    border: 0;
+}
+
+.button-square span:last-child {
+    font-size: 0.8em;
+    margin-left: 4px;
+}
+
+.button-round-icon {
+    cursor: pointer;
+    --size: 140px;
+    display: flex;
+    flex-direction: column;     /*Изменить направление выравнивания*/
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 300;
+    width: var(--size);
+    height: var(--size);
+    color: var(--grey_dark);
+    border-radius: var(--size);
+    background: linear-gradient(to left top, transparent, white);       /*градиент в другую сторону*/
+    text-transform: uppercase;
+}
+.button-round-icon i {
+    font-size: 46px;
+    margin-bottom: 8px;
+    color: var(--accent);
+    font-size: 40px;
+}
+.button-round-icon.active,
+.button-round-icon:hover {
+    color: var(--accent);
+}
+.button-round-icon.border {
+    position: relative;
+    font-size: 11px;
+}
+.button-round-icon.border::after {
+    --offset: 10%;
+    content: '';
+    display: block;
+    position: absolute;
+    top: var(--offset);
+    right: var(--offset);
+    bottom: var(--offset);
+    left: var(--offset);
+    border-radius: 100px;
+    border: 3px solid #ddd;
+
+}
+.button-round-icon.active i,
+.button-round-icon:hover i {
+    
+    /*Обрезка фона*/
+    background: var(--gradient-secondary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+}
+.inner-shadow {
+}
+.ic_map {
+}
+
+.input-dark {
+    outline: none; /*Убрать синюю обводку*/
+    border: none;
+    background-color: var(--dark);
+    padding: 14px 40px;
+    font-weight: 300;
+    font-size: 18px;
+    color: white;
+    border-radius: 100px;
+}
+
+
+/*button-small*/
+.button-small {
+    cursor: pointer;
+    padding: 14px 24px;    
+    background: var(--gradient_red);
+    color: white;
+    text-align: center;
+    border-radius: 100px;
+    font-weight: 300;
+}
+
+/* Стили для карточек */
+
+.card {
+    background-color: var(--dark);
+    border-radius: 16px;
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 32px;
+}
+.card__content {
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    grid-gap: 40px;
+    align-items: center;
+}
+.card__content:nth-child(2) .card__info {
+    border-top: 2px dashed var(--grey_dark);
+    border-bottom: 2px dashed var(--grey_dark);
+    margin: 16px 0;
+    padding: 16px 0;
+
+}
+.card__letter {
+    --size: 40px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--size);
+    background: var(--gradient-primary);
+    /*Выравниваем по центру*/
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+.card__info {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 300;
+}
+.card__info span {
+    position: relative;
+    color: var(---grey_light);
+    text-transform: uppercase;
+    font-size: 9px;
+    top: -5px;
+}
+.card__title {
+    font-size: 14px;
+}
+.card_lenght {
+}
+
