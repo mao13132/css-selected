@@ -8,17 +8,18 @@
     <title>Orange UI Kit</title>
 </head>
 <body>
+    <link rel="stylesheet" href="">
     <div class="wrapper">
         <div>
             <label class="input">
                 <span>https://</span>
-                <input type="text">
+                <input class="req" type="text">
             </label>
-            <label class="input">
+            <label class="input username">
                 <span>username</span>
                 <input type="text">
             </label>
-            <label class="input">
+            <label class="input password">
                 <span>password</span>
                 <input type="password">
             </label>
@@ -26,6 +27,34 @@
             <div class="button">
                 Log in
             </div>
+            
+
+            <div class="sliders">
+                <div class="slider outer-shadow">
+                    <div class="slider__action">
+                        <div class="slider__progress"></div>
+                        <div class="slider__round outer-shadow"></div>
+                    </div>
+                    <i class="ic_note"></i>
+                </div>
+                <div class="slider outer-shadow">
+                    <div class="slider__action">
+                        <div class="slider__progress"></div>
+                        <div class="slider__round outer-shadow"></div>
+                    </div>
+                    <i class="ic_moon"></i>
+                </div>
+                <div class="slider outer-shadow">
+                    <div class="slider__action">
+                        <div class="slider__progress"></div>
+                        <div class="slider__round outer-shadow"></div>
+                    </div>
+                    <i class="ic_moon_full"></i>
+                </div>
+                <!-- <div class="razdel"></div> -->
+
+            </div>
+
 
             <div class="selectbox">
                 <div class="selectbox__selected">
@@ -34,31 +63,77 @@
                 </div>
 
                 <div class="selectbox__list">
-                    <div class="selectbox_item">Option 1</div>
-                    <div class="selectbox_item">Option 2</div>
-                    <div class="selectbox_item">Option 3</div>
+                    <div value="1" class="selectbox_item">Option 1</div>
+                    <div value="1" class="selectbox_item">Option 2</div>
+                    <div value="1" class="selectbox_item">Option 3</div>
                 </div>
 
             </div>
-            <div class="selectbox open">
-                <div class="selectbox__selected">
-                    <span>Selected</span>
-                    <i class="ic_arrow_down"></i>
+            
+
+
+        </div>
+
+
+        <div>
+            <div>
+
+                <div class="round-buttons">
+                    <div class="reund-button outer-shadow"><i class="ic_back"></i></div>
+                    <div class="reund-button outer-shadow"><i class="ic_stop"></i></div>
+                    <div class="reund-button outer-shadow"><i class="ic_next"></i></div>
+                    <div class="reund-button outer-shadow active"><i class="ic_continue"></i></div>
+                    <div class="reund-button outer-shadow active"><i class="ic_play"></i></div>
+                    <div class="reund-button outer-shadow active"><i class="ic_pause"></i></div>
+                    <div class="reund-button outer-shadow"><i class="ic_map"></i></div>
+                    <div class="reund-button outer-shadow"><i class="ic_moon"></i></div>
+                    <div class="reund-button outer-shadow"><i class="ic_star"></i></div>
                 </div>
 
-                <div class="selectbox__list">
-                    <div class="selectbox_item active">Option 1</div>
-                    <div class="selectbox_item">Option 2</div>
-                    <div class="selectbox_item">Option 3</div>
+                <div class="circle-slider">
+                    <div class="circle-slider__circle_1 outer-shadow"></div>
+                    
+                    <div class="circle-slider__drop-col"></div>
+                    <div class="circle-slider__drop-row"></div>
+                    
+
+                    <svg class="circle-slider__circle_2 outer-shadow" viewBox="0 0 110 110">
+                        <circle class="segment" r="50%" cy="50%" cx="50%"></circle>
+                    </svg>
+
+                    <div class="circle-slider__circle_3_bg outer-shadow">
+                        
+                    </div>
+                    
+                    <svg class="circle-slider__circle_3" viewBox="0 0 100 100">
+
+                        <!-- Градиент для svg -->
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            
+                            <stop offset="0%" stop-color="#fea13e"></stop>
+                            <stop offset="90%" stop-color="#f52a2b"></stop>
+
+                        </linearGradient>
+
+                        <circle class="circle_1" r="40%" cy="50%" cx="50%"></circle>
+                        <circle class="circle_2" r="40%" cy="50%" cx="50%"></circle>
+                        <circle class="circle_3" r="6%" cy="50%" cx="90%"></circle>
+                        <circle class="circle_4" r="3%" cy="50%" cx="90%"></circle>
+                    </svg>
+
+                    <i class="ic_power"></i>
                 </div>
 
             </div>
 
+
+
         </div>
+
         <div>
         </div>
-        <div>
-        </div>
+
     </div>
+    <script src="scripts.js"></script>
 </body>
 </html>

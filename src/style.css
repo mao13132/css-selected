@@ -2,6 +2,9 @@
 @import url('./icons/style.css');   /*Ипорт для шрифтов*/
 
 :root {
+
+    --progress_slide: 10%;
+    /*Colors*/
     --accent: #f52a2b;
     --grey_dark: #7c8080;
     ---grey_light: #bcbcbc;
@@ -9,8 +12,15 @@
     --bg: #e5e5e7;
     --gradient-primary: linear-gradient(to right, #fea13e, var(--accent));
     --gradient-secondary: liner-gradient(to right, var(---grey_light), var(--grey_dark));
+    
+    /*Shadows*/
+    --outer_light: -10px -10px 20px white;
+    --outer_dark: 10px 10px 20px rgba(0,0,0,0.3);
+
+
 
     --transition: all 0.5s ease-in-out; /*Стиль анимации*/
+    
 }
 
 * {
@@ -21,6 +31,13 @@
 body {
     font-family: 'Rubik', sans-serif;
     background-color: var(--bg);
+}
+
+/*Commin Styles*/
+.outer-shadow {
+    
+    border-left: 1px solid white;       /*Только левый край обведен*/
+    box-shadow: var(--outer_light), var(--outer_dark);
 }
 
 .wrapper {
@@ -35,6 +52,13 @@ body {
 }
 .wrapper > div > *:not(:last-child) {
     margin-bottom: 16px;
+}
+
+/*Первому потомку ребелку*/
+.wrapper > div:nth-child(2) > *:first-child {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 16px;
 }
 
 .input {
@@ -147,4 +171,257 @@ body {
 .selectbox.open .selectbox__list {
     padding: 0 12px 24px;   /*Выравнивание строчек в нутри*/
     max-height: max-content;            /*отображаем строчки*/
+}
+
+/*Slider*/
+.sliders {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+    margin-top: 30px;
+}
+.slider {
+    padding-top: 20px;
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    border-radius: 100px;
+    height: 250px;
+    justify-items: center;
+    align-items: center;
+    background-color: var(--bg);
+}
+.slider__action {
+    position: relative;
+    width: 8px;
+    height: 100%;
+    background-color: #ccc;
+    border-radius: 20px;
+}
+.slider__progress {
+    position: absolute;
+    background-color: var(--accent);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--progress_slide);
+    border-radius: 20px;
+}
+
+.slider__round {
+    cursor: pointer;
+    --size: 28px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--size);
+    position: absolute;
+    left: 50%;
+    right: 0;
+    bottom: var(--progress_slide);
+    transform: translateX(-50%);        /*Что бы выравнивать с учётом размеру объекта*/
+    /* margin-left: calc(var(--size) / -2); */
+    background-color: var(--bg);
+}
+.slider__round::after {
+    --offset: 10%;
+    content: '';
+    display: block;
+    position: absolute;
+    top: var(--offset);
+    bottom: var(--offset);
+    left: var(--offset);
+    right: var(--offset);
+    background: var(--gradient-primary);
+    border-radius: 100%;
+}
+.slider i {
+    font-size: 1.4em;
+
+    /*Так делается шрифт градиент*/
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/*Блок круглых кнопок*/
+.round-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 16px;
+    align-items: center;
+    justify-items: center;
+}
+.ic_back {
+}
+.ic_stop {
+}
+.ic_next {
+}
+.active {
+}
+.ic_continue {
+}
+.ic_play {
+}
+.ic_pause {
+}
+.ic_map {
+}
+.ic_moon {
+}
+.ic_star {
+}
+.reund-button {
+    --size: 50px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--size);
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    cursor: pointer;
+}
+.reund-button i {
+    font-size: 1.2em;
+}
+.reund-button:hover i,
+.reund-button.active i {
+    /*Обрезка фона*/
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/*Крутилка*/
+
+.circle-slider {
+    position: relative;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    /* width: 30vw; */ /*относительная виличина*/
+    /* height: 30vw; */
+    width: 300px;
+    height: 300px;
+}
+.circle-slider > * {        /*Всем эллементам первого уровня сложности*/
+    border-radius: 100%;
+}
+.circle-slider__circle_1 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bg);
+}
+svg.circle-slider__circle_2 {
+    --offset: 11%;
+    position: absolute;
+    top: var(--offset);
+    bottom: var(--offset);
+    left: var(--offset);
+    right: var(--offset);
+    padding: 10px;
+}
+/*Настройка штрихов из svg*/
+.segment {
+    fill: transparent;      /*Заливка для svg*/
+    stroke: var(--grey_dark);
+    stroke-width: 10px;
+    stroke-dasharray: 0.5 13.9;
+}
+svg.circle-slider__circle_3,
+.circle-slider__circle_3_bg {
+    --offset: 20%;
+    position: absolute;
+    top: var(--offset);
+    bottom: var(--offset);
+    left: var(--offset);
+    right: var(--offset);
+    transform: rotate(-90deg);      /*Повернуть слайдер что бы он начинался с верху заполнение*/
+}
+
+.circle-slider__circle_3_bg {
+    transform: initial; /*Сбро разворота что бы у прокладки тень была под верным углом*/
+}
+.circle_1, 
+.circle_2,
+.circle_3 {
+    fill: transparent;      /*Прозрачность для svg*/
+}
+.circle_1, 
+.circle_2 {
+    stroke: var(---grey_light);
+    stroke-width: 1px;
+}
+.circle_2 {
+    /* stroke: var(--accent); */
+    stroke: url(#gradient);
+    stroke-dasharray: 200 313;  /*313 это полностью заполненный круг 2-е значение*/
+    
+}
+.circle_3 {
+    
+    fill: var(--bg);    /*Вырезать заливку*/
+    /* stroke: var(--accent); */
+}
+.circle_4 {
+    fill: var(--bg);
+    stroke: var(--accent);
+    position: relative;
+}
+.ic_power {
+    z-index: 1;
+}
+.circle-slider i {
+    font-size: 1.6em;
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.circle-slider__drop-col,
+.circle-slider__drop-row {
+    --offset: 2%;
+    z-index: 1;
+    position: absolute;
+    top: var(--offset);
+    right: var(--offset);
+    bottom: var(--offset);
+    left: var(--offset);
+}
+
+/*Делаю каплю на крутилку*/
+.circle-slider__drop-col::before,
+.circle-slider__drop-col::after,
+.circle-slider__drop-row::before,
+.circle-slider__drop-row::after {
+    --radius: 100%;
+    content: '';
+    display: block;
+    position: absolute;
+    border: 3px solid transparent;
+    border-bottom: 13px solid var(--accent);
+    border-radius: 20px;
+
+}
+.circle-slider__drop-col::before {
+    left: 50%;
+}
+.circle-slider__drop-col::after {
+    left: 50%;
+    bottom: 0;
+    transform: rotate(180deg);      /*Разворот на 180%*/
+}
+.circle-slider__drop-row::before {
+    left: 1%;
+    bottom: 50%;
+    transform: rotate(-90deg);      /*Разворот на 180%*/
+}
+.circle-slider__drop-row::after {
+    right: 1%;
+    bottom: 50%;
+    transform: rotate(90deg);      /*Разворот на 180%*/
 }
