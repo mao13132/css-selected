@@ -516,13 +516,13 @@ svg.circle-slider__circle_3,
     color: var(--accent);
     font-size: 40px;
 }
-.button-round-icon.active,
-.button-round-icon:hover {
-    color: var(--accent);
+.button-round-icon + .button-round-icon {       /*Следующему такому же классу*/
+    margin-top: 30px;
 }
 .button-round-icon.border {
     position: relative;
     font-size: 11px;
+    color: var(--accent);
 }
 .button-round-icon.border::after {
     --offset: 10%;
@@ -534,10 +534,13 @@ svg.circle-slider__circle_3,
     bottom: var(--offset);
     left: var(--offset);
     border-radius: 100px;
-    border: 3px solid #ddd;
+    border: 1px solid #ddd;
 
 }
-.button-round-icon.active i,
+.button-round-icon.border.active::after {
+    border-color: var(--accent);
+}
+.button-round-icon.border i,
 .button-round-icon:hover i {
     
     /*Обрезка фона*/
